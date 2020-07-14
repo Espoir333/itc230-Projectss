@@ -1,0 +1,11 @@
+{
+  "name": "first_app",
+  "version": "1.0.0",
+  "description": "\"web application for itc230\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "\"Espoir\"",
+  "license": "ISC"
+}
