@@ -1,5 +1,4 @@
-  
-// to assign value =
+  // to assign value =
 // to compare values ==
 // to compare values stricktly ===
 
