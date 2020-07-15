@@ -1,6 +1,5 @@
-  // to assign value =
-// to compare values ==
-// to compare values stricktly ===
+'use strict'
+const x=10
 
 let videos =[
     {title: "titanic", director:"James Cameron", genre: "romance", released:1997},
