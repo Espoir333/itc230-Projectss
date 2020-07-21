@@ -12,7 +12,7 @@ let videos =[
 exports.getAll = () => {
     return movies;
 };
-
+console.log(this.getAll())
 // exports.getmovies = (title) => {
 //     return movies.find((movies) => {
 //       return movies.title === title;
