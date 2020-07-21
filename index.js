@@ -1,3 +1,4 @@
+const movies = require('./data.js');
 const http = require("http"); 
 http.createServer((req,res) => {
   const path = req.url.toLowerCase();
