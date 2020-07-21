@@ -1,7 +1,7 @@
 'use strict'
 const x=10
 
-let videos =[
+let movies =[
     {title: "titanic", director:"James Cameron", genre: "romance", released:1997},
     {title: "mission impossible", director:"Brian De Palma", genre: "action", release:1996},
     {title: "The Seven Samurai", director:"Akira Kurosawa", genre: "action", release:1954},
