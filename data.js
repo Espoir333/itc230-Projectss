@@ -13,26 +13,26 @@ exports.getAll = () => {
     return movies;
 };
 
-exports.getmovies = (title) => {
-    return movies.find((movies) => {
-      return movies.title === title;
-    });
-  }
-exports.delete = (title) => {
-    const oldLength = movies.length;
-    movies = movies.filter((item) => {
-        return item.title !== title;
-    });
-    // if old & new array lengths differ, item was deleted
-    return {deleted: oldLength !== movies.length, total: movies.length };
-}; 
-exports.add = (newmovie) => {
-  const oldLength = movies.length;
-  // use existing get() method to check if movies already in our list
-  let found = this.getmovies(newmovie.title);
-  if (!found) {
-      movies.push(newmovie);
-  }
-  // if old & new array lengths differ, item was added
-  return {added: oldLength !== movies.length, total: movies.length };
-};
+// exports.getmovies = (title) => {
+//     return movies.find((movies) => {
+//       return movies.title === title;
+//     });
+//   }
+// exports.delete = (title) => {
+//     const oldLength = movies.length;
+//     movies = movies.filter((item) => {
+//         return item.title !== title;
+//     });
+//     // if old & new array lengths differ, item was deleted
+//     return {deleted: oldLength !== movies.length, total: movies.length };
+// }; 
+// exports.add = (newmovie) => {
+//   const oldLength = movies.length;
+//   // use existing get() method to check if movies already in our list
+//   let found = this.getmovies(newmovie.title);
+//   if (!found) {
+//       movies.push(newmovie);
+//   }
+//   // if old & new array lengths differ, item was added
+//   return {added: oldLength !== movies.length, total: movies.length };
+// };
