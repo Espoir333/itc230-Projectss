@@ -5,6 +5,8 @@ http.createServer((req,res) => {
   switch(path) {
     case '/':
       res.writeHead(200, {'Content-Type': 'text/plain'});
+      let videos=movies.getAll().length
+      console.log(videos)
       res.end('Home page');
       break;
     case '/about':
