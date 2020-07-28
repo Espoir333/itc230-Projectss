@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>React App Demo</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+
+<div id="root"></div>
+<script type="text/babel">
+    class App extends React.Component{
+      constructor(props){
+          super(props);
+          // Set initial state using data from server application
+          this.state = {
+            items: {{{ items }}},
+            curItem: { } // current selected item
+          };
+         this.showdetails=this.showdetails.bind(this)
+       }
+      showdetails(event){
+        let newitem=this.state.items.find(item=>{
+          return item._id == event.target.id
+        })
+        this.setState({curItem:newitem})
+      }
+      render() {
+        // render app UI elements
+        return (
+          <div>
+        <Title title="Here my movies list"/>
+        <ItemList items={this.state.items} show={this.showdetails}/>
+        <Details item={this.state.curItem}/>
+          </div>
+          );
+      }
+    }
+    const Title=({title})=>{
+      return <div> <h1>{title}</h1></div>
+    }
+     const ItemList = ({items,show}) => {
+      // generate array of item nodes
+      const list = items.map((item) => {
+          return <li id={item._id} key={item._id} onClick={show}>{item.type}</li>     
+      });
+      return <ul>{list}</ul>;
+    }
+    //hr line
+  
+   const Details = (props) => {
+     return (
+       <div>
+           <hr />
+        <h4>Movie Title: {props.item.title}</h4>
+        <h4>Director : {props.item.director}</h4>
+        <h4>Type : {props.item.genre}</h4>
+        <h4>Year : {props.item.release}</h4>
+        </div>
+     )
+   }
+    ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+</body>
+</html>
