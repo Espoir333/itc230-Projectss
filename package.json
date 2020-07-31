@@ -1,15 +1,16 @@
 {
-    "name": "itc230",
-    "version": "1.0.0",
-    "description": "web application for itc230",
-    "main": "index.js",
-    "scripts": {
-      "start": "node index.js"
-    },
-    "author": "Espoir",
-    "license": "ISC",
-    "dependencies": {
-      "express": "^4.17.1"
-    }
+  "name": "itc230",
+  "version": "1.0.0",
+  "description": "web application for itc230",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Espoir",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0"
   }
-  
+}
