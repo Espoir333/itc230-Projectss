@@ -15,6 +15,7 @@ app.engine('handlebars', exphbs({defaultLayout: false}));
 app.set("view engine", "handlebars");
 const movies = require('./data.js');
 const http = require("http"); 
+app.use(bodyParser.json());
 
 app.get('/home.html', (request, response) => {
   response.type('text/html');
