@@ -1,8 +1,8 @@
 'use strict'
 
-//const http = require("http");
+const http = require("http");
 //const Movie = require('./model/movies');
-//const movies = require('./data.js');
+const movies = require('./data.js');
 const express = require("express");
 const bodyParser = require("body-parser")
 const exphbs = require("express-handlebars"); 
@@ -14,8 +14,6 @@ app.use(bodyParser.urlencoded({extended: true})); // parse form submissions
 app.engine('handlebars', exphbs({defaultLayout: false}));
 app.set("view engine", "handlebars");
 app.use(bodyParser.json());
-const movies = require('./data.js');
-const http = require("http"); 
 
 app.get('/home.html', (request, response) => {
   response.type('text/html');
