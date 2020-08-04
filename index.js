@@ -13,9 +13,9 @@ app.use(express.static(__dirname + '/public')); // set location for static files
 app.use(bodyParser.urlencoded({extended: true})); // parse form submissions
 app.engine('handlebars', exphbs({defaultLayout: false}));
 app.set("view engine", "handlebars");
+app.use(bodyParser.json());
 const movies = require('./data.js');
 const http = require("http"); 
-app.use(bodyParser.json());
 
 app.get('/home.html', (request, response) => {
   response.type('text/html');
