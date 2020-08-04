@@ -1,12 +1,17 @@
 'use strict'
+
+//const http = require("http");
+//const Movie = require('./model/movies');
+//const movies = require('./data.js');
 const express = require("express");
 const bodyParser = require("body-parser")
+const exphbs = require("express-handlebars"); 
 
 const app = express();
 app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/public')); // set location for static files
 app.use(bodyParser.urlencoded({extended: true})); // parse form submissions
-//app.engine('handlebars', exphbs({defaultLayout: false}));
+app.engine('handlebars', exphbs({defaultLayout: false}));
 app.set("view engine", "handlebars");
 const movies = require('./data.js');
 const http = require("http"); 
