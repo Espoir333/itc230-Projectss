@@ -1,7 +1,7 @@
 'use strict'
 
+//const Movie = require('./model/movies');
 const http = require("http");
-const Movie = require('./model/movies');
 const movies = require('./data.js');
 const express = require("express");
 const bodyParser = require("body-parser")
