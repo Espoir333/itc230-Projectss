@@ -15,23 +15,23 @@ app.engine('handlebars', exphbs({defaultLayout: false}));
 app.set("view engine", "handlebars");
 app.use(bodyParser.json());
 
-app.get('/home.html', (request, response) => {
+app.get('/', (request, response) => {
   response.type('text/html');
   response.sendFile(__dirname + '/public/home.html');
 });
 
-app.get('/', (request, response) => {
-  return Movie.find({}).lean()
-  .then((movies) => {
-    console.log(movies);
-    response.render('home_react', {items: JSON.stringify(movies)});
+//app.get('/', (request, response) => {
+  //return Movie.find({}).lean()
+  //.then((movies) => {
+    //console.log(movies);
+    //response.render('home_react', {items: JSON.stringify(movies)});
    // response.send(movies)
-  })
+ // })
   //.catch(err => console.log(err));
-  .catch(err => next(err));
+ // .catch(err => next(err));
 
  // response.render('home', {movies: all});
-});
+//});
 
 app.get('/api/movies', (request, response) => {
   return Movie.find({}).lean()
@@ -55,10 +55,11 @@ app.get('/detail', (request, response) => {
   });
 
 app.get('/', (req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  let videos=movies.getAll().length
-  console.log(videos)
-  res.end(`The length is ${videos}`);
+  res.type('text/html')
+  //let videos=movies.getAll().length
+  //console.log(videos)
+  //res.end(`The length is ${videos}`);
+  res.render('home', {movie: movies.getAll()})
  });
  //app.get('/', (req, res) => {
   //res.type('text/html')
