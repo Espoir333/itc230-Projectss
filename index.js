@@ -19,20 +19,6 @@ app.get('/', (req, res) => {
   res.type('text/html')
   res.render('home', {movies: movies.getAll()})
  });
-
-//app.get('/', (request, response) => {
-  //return Movie.find({}).lean()
-  //.then((movies) => {
-    //console.log(movies);
-    //response.render('home_react', {items: JSON.stringify(movies)});
-   // response.send(movies)
- // })
-  //.catch(err => console.log(err));
- // .catch(err => next(err));
-
- // response.render('home', {movies: all});
-//});
-
 app.get('/api/movies', (request, response) => {
   return Movie.find({}).lean()
   .then((movies) => {
@@ -50,24 +36,6 @@ app.get('/detail', (request, response) => {
  
   });
 
- //app.get('/', (req, res) => {
-  //res.type('text/html')
-  //res.render('home', {players : players.getAll()})
- //})
-
-//app.get('/api/delete', (request, response) => {
-//  let director = request.query.director;
-//Movie.deleteOne({"director":director}).lean()
-//.then((movie) => {
- // response.json(movie)
- // console.log(movie);;
-//})
-//.catch(err => console.log(err));
-
- //let movie = all[index];
-  //response.render('detail', { index: index, movie: movie });
-
-
 // send plain text response
 
  app.get('/about', (req, res) => {
@@ -82,26 +50,6 @@ app.get('/detail', (request, response) => {
   console.log('Got 404 - Not Found request.');
   res.send('404 - Not found');
  });
-
-// http.createServer((req,res) => {
-//   const path = req.url.toLowerCase();
-//   switch(path) {
-//     case '/':
-//       res.writeHead(200, {'Content-Type': 'text/plain'});
-//       let videos=movies.getAll().length
-//       console.log(videos)
-//       res.end(`The length is ${videos}`);
-//       break;
-//     case '/about':
-//       res.writeHead(200, {'Content-Type': 'text/plain'});
-//       res.end('About page');
-//       break;
-//     default:
-//       res.writeHead(404, {'Content-Type': 'text/plain'});
-//       res.end('Not found');
-//       break;
-//     }
-// }) 
 app.listen(app.get('port'), () => {
   console.log('Express started'); 
  })
