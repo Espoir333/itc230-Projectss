@@ -12,12 +12,11 @@ let movies =[
 exports.getAll = () => {
     return movies;
 };
-console.log(this.getAll())
-// exports.getmovies = (title) => {
-//     return movies.find((movies) => {
-//       return movies.title === title;
-//     });
-//   }
+ exports.getmovie = (title) => {
+  return movies.find((movies) => {
+   return movies.title === title;
+  });
+ }
 // exports.delete = (title) => {
 //     const oldLength = movies.length;
 //     movies = movies.filter((item) => {

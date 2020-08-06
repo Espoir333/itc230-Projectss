@@ -15,10 +15,10 @@ app.engine('handlebars', exphbs({defaultLayout: false}));
 app.set("view engine", "handlebars");
 app.use(bodyParser.json());
 
-app.get('/', (request, response) => {
-  response.type('text/html');
-  response.sendFile(__dirname + '/public/home.html');
-});
+app.get('/', (req, res) => {
+  res.type('text/html')
+  res.render('home', {movies: movies.getAll()})
+ });
 
 //app.get('/', (request, response) => {
   //return Movie.find({}).lean()
@@ -44,23 +44,12 @@ app.get('/api/movies', (request, response) => {
 });
 
 app.get('/detail', (request, response) => {
-  let director = request.query.director;
-  Movie.findOne({"director":director}).lean()
-  .then((movie) => {
-    response.render('detail', {movie: movie });
-
-      console.log(movie);;
-  })
-  .catch(err => console.log(err));
+  let title = request.query.title;
+  let movie=movies.getmovie(title)
+  response.render('detail', {movie: movie})
+ 
   });
 
-app.get('/', (req, res) => {
-  res.type('text/html')
-  //let videos=movies.getAll().length
-  //console.log(videos)
-  //res.end(`The length is ${videos}`);
-  res.render('home', {movie: movies.getAll()})
- });
  //app.get('/', (req, res) => {
   //res.type('text/html')
   //res.render('home', {players : players.getAll()})
