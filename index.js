@@ -38,7 +38,7 @@ app.get('/detail', (request, response) => {
   let director= request.query.title;
   //let movie=movies.getmovie(title)
   Movie.findOne({"title":title}).lean()
-.then((movies) => {
+.then((movie) => {
   response.render('detail', {movie: movie})
  
   });
