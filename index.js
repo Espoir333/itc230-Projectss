@@ -1,6 +1,6 @@
 'use strict'
 
-//const Movie = require('./model/movies');
+const Movie = require('./models/movies');
 const http = require("http");
 const movies = require('./data.js');
 const express = require("express");
@@ -17,7 +17,12 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.type('text/html')
-  res.render('home', {movies: movies.getAll()})
+  Movie.find({}).lean()
+  .then((movies) => {
+   // console.log(movies);
+   res.render('home', {movies: movies})
+  })
+ .catch(err => console.log(err));
  });
 app.get('/api/movies', (request, response) => {
   return Movie.find({}).lean()
