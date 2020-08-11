@@ -1,4 +1,4 @@
-const Movie = require("../model/movies")
+const Movie = require("../models/movies")
 
 Movie.find({}).lean()
     .then((movies) => {
