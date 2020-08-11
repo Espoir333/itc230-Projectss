@@ -22,4 +22,4 @@ const mySchema = mongoose.Schema({
  year: Number
 }); 
 
-module.exports = mongoose.model('Movie', mySchema,"Movies");
+module.exports = mongoose.model('movie', mySchema);
