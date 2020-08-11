@@ -1,3 +1,4 @@
+
 const Movie = require("../models/movies")
 
 Movie.find({}).lean()
@@ -6,4 +7,3 @@ Movie.find({}).lean()
     })    
 .catch(err => console.log(err));
 //Book.find({}).lean()
- 

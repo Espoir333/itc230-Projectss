@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 
 // remote db connection settings. For security, connectionString should be in a separate file not committed to git
@@ -21,5 +22,4 @@ const mySchema = mongoose.Schema({
  type:String,
  year: Number
 }); 
-
-module.exports = mongoose.model('movie', mySchema);
+module.exports = mongoose.model('Movie', mySchema);
