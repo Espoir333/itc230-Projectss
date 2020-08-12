@@ -40,8 +40,7 @@ app.get('/detail', (request, response) => {
   Movie.findOne({"title":title}).lean()
 .then((movie) => {
   response.render('detail', {movie: movie})
- 
-  });
+ });
 
 // send plain text response
 
