@@ -41,6 +41,7 @@ app.get('/detail', (request, response) => {
 .then((movie) => {
   response.render('detail', {movie: movie})
  });
+});
 
 // send plain text response
 
