@@ -49,7 +49,6 @@ Movie.deleteOne({"title":title}).lean()
 .then((movie) => {
   response.json(movie)
   //console.log(movie);;
-  response.render('delete', {movie: movie})
 })
 .catch(err => console.log(err));
 });
