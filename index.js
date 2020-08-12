@@ -44,7 +44,7 @@ app.get('/detail', (request, response) => {
 });
 
 app.get('/api/delete', (request, response) => {
-  let title = request.query.director;
+  let title = request.query.title;
 Movie.deleteOne({"title":title}).lean()
 .then((movie) => {
   response.json(movie)
