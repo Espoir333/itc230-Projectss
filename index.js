@@ -35,7 +35,7 @@ app.get('/api/movies', (request, response) => {
 });
 
 app.get('/detail', (request, response) => {
-  let director= request.query.title;
+  let title= request.query.title;
   //let movie=movies.getmovie(title)
   Movie.findOne({"title":title}).lean()
 .then((movie) => {
