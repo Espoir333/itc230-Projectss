@@ -43,6 +43,18 @@ app.get('/detail', (request, response) => {
  });
 });
 
+app.get('/api/delete', (request, response) => {
+  let title = request.query.director;
+Movie.deleteOne({"title":title}).lean()
+.then((movie) => {
+  response.json(movie)
+  //console.log(movie);;
+  response.render('delete', {movie: movie})
+})
+.catch(err => console.log(err));
+});
+
+
 // send plain text response
 
  app.get('/about', (req, res) => {
