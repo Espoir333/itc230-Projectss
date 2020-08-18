@@ -27,14 +27,24 @@ app.get('/', (req, res) => {
 app.get('/api/movies', (request, response) => {
   return Movie.find({}).lean()
   .then((movies) => {
-   // console.log(movies);
-   // response.send(movies)
+    console.log(movies);
+    //response.send(movies)
+     response.render('home', {movies});
   })
  .catch(err => console.log(err));
  // response.render('home', {movies: all});
 });
 
 app.get('/detail', (request, response) => {
+  let title= request.query.title;
+  //let movie=movies.getmovie(title)
+  Movie.findOne({"title":title}).lean()
+.then((movie) => {
+  response.render('detail', {movie: movie})
+ });
+});
+
+app.get('/api/detail', (request, response) => {
   let title= request.query.title;
   //let movie=movies.getmovie(title)
   Movie.findOne({"title":title}).lean()
