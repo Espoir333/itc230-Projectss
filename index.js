@@ -43,6 +43,28 @@ app.get('/detail', (request, response) => {
  });
 });
 
+app.get('api/movies/:title', (request, response) => {
+  let title = request.params.title;
+    //let movie = all[index];
+   
+  Movie.findOne({"title":title}).lean()
+  .then((movie) => {
+    response.json(movie)
+    console.log(movie);;
+  })
+  .catch(err => console.log(err));
+  })
+
+// insert or update a single record 
+app.post('/api/add', (request, response) => {
+  const newMovie= request.body;
+  Movie.update({'title':newMovie.title}, newMovie, {upsert:true}, (err, result) => {
+    if (err) return next(err);
+    response.json(result)
+    console.log(result);
+  });
+  });
+
 app.get('/api/delete', (request, response) => {
   let title = request.query.title;
 Movie.deleteOne({"title":title}).lean()
@@ -53,9 +75,10 @@ Movie.deleteOne({"title":title}).lean()
 .catch(err => console.log(err));
 });
 
+  //let movie = all[index];
+  //response.render('detail', { index: index, movie: movie });
 
 // send plain text response
-
  app.get('/about', (req, res) => {
   res.type('text/plain');
   res.send('About page');
