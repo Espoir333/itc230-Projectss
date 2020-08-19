@@ -1,9 +1,9 @@
 const Movie = require("./movie/movie");
 
 // return all records
-Artist.find({}).lean()
+Movie.find({}).lean()
   .then((movies) => {
-    console.log(artists);
+    console.log(movies);
   })
   .catch(err => next(err));
 });
