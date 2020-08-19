@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   Movie.find({}).lean()
   .then((movies) => {
    // console.log(movies);
-   res.render('home', {movies: movies})
+   res.render('home_react.handlebars', {movies: JSON.stringify(movies)})
   })
  .catch(err => console.log(err));
  });

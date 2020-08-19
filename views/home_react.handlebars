@@ -17,7 +17,7 @@
           super(props);
           // Set initial state using data from server application
           this.state = {
-            items: {{{ items }}},
+            items: {{{ movies}}},
             curItem: { } // current selected item
           };
          this.showdetails=this.showdetails.bind(this)
@@ -45,7 +45,7 @@
      const ItemList = ({items,show}) => {
       // generate array of item nodes
       const list = items.map((item) => {
-          return <li id={item._id} key={item._id} onClick={show}>{item.type}</li>     
+          return <li id={item._id} key={item._id} onClick={show}>{item.title}</li>     
       });
       return <ul>{list}</ul>;
     }
