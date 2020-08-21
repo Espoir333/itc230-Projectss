@@ -15,7 +15,14 @@ app.engine('handlebars', exphbs({defaultLayout: false}));
 app.set("view engine", "handlebars");
 app.use(bodyParser.json());
 
+//app.get('/home.html', (request, response) => {
+ // response.type('text/html');
+ //response.sendFile(__dirname + '/public/home.html');
+//});
+
+
 app.get('/', (req, res) => {
+  //return Movie.find({}).lean()
   res.type('text/html')
   Movie.find({}).lean()
   .then((movies) => {
@@ -42,6 +49,7 @@ app.get('/detail', (request, response) => {
 .then((movie) => {
   response.render('detail', {movie: movie})
  });
+ //.catch(err => console.log(err));
 });
 
 app.get('/api/detail', (request, response) => {
