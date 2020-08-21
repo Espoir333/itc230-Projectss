@@ -1,0 +1,151 @@
+<html>
+<head>
+  <title>React App Demo</title>
+
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+
+  <div id="root"></div>
+  <script type="text/babel">
+    // Item List Component
+    const ItemList = (props) => {
+      console.log(props)
+      return(
+        <div>
+          <h1>Welcome to my movies</h1>
+          <ul>
+            {props.items.map(item => <li onClick={props.clickHandler} key={item.title}>{item.title}</li>)}
+          </ul>
+          <hr />
+        </div>
+      );
+    }
+    // Details component
+    const MovieDetail = (props) => {
+      console.log(props)
+      return(
+        <div>
+          <form>
+              
+              <p>Title : <input onChange={props.change} type="text" name="title" value={props.item.title || ""}/></p>
+              <p>director : <input onChange={props.change} type="text" name="director" value={props.item.director || ""}/></p>
+              <p>Type : <input  onChange={props.change} type="text" name="type" value={props.item.type || ""}/></p>
+              <p>Year: <input  onChange={props.change} type="text" name="year" value={props.item.year || ""}/></p>
+          </form>
+          <button onClick={props.save}>Save</button>  
+          <button onClick={props.delete}>Delete</button>
+          <button onClick={props.clear}> Clear</button> 
+      </div>
+      );
+    }
+    // App component
+    class App extends React.Component {
+      constructor(props) {
+        super(props);
+        // Set initial state using data from server application
+        this.state = {
+          items: {{{items}}},
+          currentItem: {},
+        };
+        console.log('THIS==>', { this })
+      
+        this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.clearForm = this.clearForm.bind(this);
+        this.deleteMovie = this.deleteMovie.bind(this);
+        this.onSave = this.onSave.bind(this);
+      }
+      // Clear Movie method
+      clearForm(e){
+        this.setState({
+          currentItem: {},
+        }); 
+      }
+      // Click Handler
+      handleClick(e) {
+        let clicked = e.target.innerText
+        let newMovie = this.state.items.find((item) => {
+          return item.title == clicked
+        })
+        this.setState({
+          currentItem: newMovie
+        }); 
+      }
+       handleChange(e) {
+        let clicked = e.target
+        let newItem = this.state.currentItem
+        newItem[clicked.name] = clicked.value
+       this.setState({
+       currentItem: newItem
+       }); 
+      }
+      // deletes movies from MongoDB
+      deleteMovie(e){
+         let deleteMovie= this.state.currentItem.title;
+         console.log("test",deleteMovie)
+         fetch("api/delete?title="+ deleteMovie)
+        .then((response) => {
+           return response.json();
+        }) 
+        .then((result) => {
+            console.log(result);
+             
+        })
+        .catch(err => console.log(err))
+    }
+     // save movies from MongoDB
+      
+      onSave() {
+        let newItem = this.state.currentItem;
+        if (!newItem.title) {
+          return;
+        }
+        delete newItem["_id"]
+        fetch("/api/add/", {
+          method: "POST",
+        	headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newItem)
+        }).then(response => response.json())
+        	.then((json) => {
+          let newData;
+          if (!newItem.title) { // add new item to array
+            newData = this.state.items;
+            newItem.title = json.this;
+            newData.push(newItem);
+          } else { // update existing item
+            newData = this.state.items.map((item) => {
+              if (item.title === newItem.this) {
+                item = newItem;
+              }
+              return item;
+            });
+          }
+          // Update state with new array
+          this.setState({items: newData});
+        });
+      }
+      // render app UI elements
+      render() {
+        return(
+          <div>
+            <ItemList items={this.state.items} clickHandler={this.handleClick} />
+            <MovieDetail
+              item={this.state.currentItem}
+              clear={this.clearForm}
+              save={ this.onSave }
+              delete={ this.deleteMovie }
+              change={this.handleChange}
+              />
+          </div>
+        );
+      }
+    }
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>
