@@ -87,7 +87,7 @@
       deleteMovie(e){
          let deleteMovie= this.state.currentItem.title;
          console.log("test",deleteMovie)
-         fetch("api/delete?title="+ deleteMovie)
+         fetch("/api/delete?title="+ deleteMovie)
         .then((response) => {
            return response.json();
         }) 
